@@ -1,0 +1,25 @@
+@model MvcLab.Controllers.LabInfo
+@{
+    ViewData["Title"] = "Інформація про лабораторну";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table border="1" cellpadding="6">
+    <tr>
+        <th>Номер роботи</th>
+        <td>@Model.Number</td>
+    </tr>
+    <tr>
+        <th>Тема</th>
+        <td>@Model.Topic</td>
+    </tr>
+    <tr>
+        <th>Мета</th>
+        <td>@Model.Goal</td>
+    </tr>
+    <tr>
+        <th>Виконавець</th>
+        <td>@Model.StudentName @Model.StudentSurname</td>
+    </tr>
+</table>
