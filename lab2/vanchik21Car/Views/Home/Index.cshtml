@@ -1,0 +1,40 @@
+@model vanchik21Car.Models.ViewModels.VehicleListViewModel
+
+<div class="container my-4">
+ <div class="d-flex justify-content-between align-items-center mb-3">
+ <h2 class="m-0">Vehicles</h2>
+ <span class="text-muted">Page @Model.PagingInfo.CurrentPage of @Model.PagingInfo.TotalPages (@Model.PagingInfo.TotalItems items)</span>
+ </div>
+
+ <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+ @foreach (var p in Model.Vehicles ?? Enumerable.Empty<vanchik21Car.Models.Vehicle>())
+ {
+ <div class="col">
+ <div class="card vehicle-card h-100 shadow-sm border-0">
+ <div class="card-body">
+ <h5 class="card-title">@p.Make @p.Model</h5>
+ <ul class="vehicle-meta list-unstyled small text-muted mb-2">
+ <li>Year: <strong class="text-dark">@p.Year</strong></li>
+ <li>Category: <strong class="text-dark">@p.Category</strong></li>
+ <li>Status: <span class="badge bg-@(p.Status == vanchik21Car.Models.VehicleStatus.Available ? "success" : "secondary")">@p.Status</span></li>
+ </ul>
+ <div class="vehicle-rate fs-5">@p.DailyRate.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-US")) / day</div>
+ </div>
+ </div>
+ </div>
+ }
+ </div>
+
+ <nav class="pager-1line mt-4" aria-label="Vehicle pages">
+ <ul class="pagination pagination-sm"
+ page-model="@Model.PagingInfo"
+ page-action="Index"
+ page-classes-enabled="true"
+ page-item-class="page-item"
+ page-item-class-selected="active"
+ page-item-class-disabled="disabled"
+ page-link-class="page-link">
+ </ul>
+ </nav>
+</div>
+
