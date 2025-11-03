@@ -1,0 +1,40 @@
+/* Custom styles for vanchik21Car */
+
+/* Card enhancements */
+.vehicle-card {
+ transition: transform .15s ease, box-shadow .15s ease;
+}
+.vehicle-card:hover {
+ transform: translateY(-2px);
+ box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
+}
+.vehicle-card .card-title {
+ margin-bottom: .25rem;
+}
+.vehicle-meta li + li { margin-top: .15rem; }
+
+/* Price highlight */
+.vehicle-rate {
+ font-weight:600;
+}
+
+/* Pagination: keep one-line and improve feel */
+.pager-1line {
+ overflow-x: auto;
+ -webkit-overflow-scrolling: touch;
+}
+.pager-1line > ul.pagination {
+ display: inline-flex;
+ flex-wrap: nowrap;
+ white-space: nowrap;
+ gap: .25rem;
+ margin-bottom:0;
+}
+.pager-1line .page-link {
+ border-radius: .375rem;
+}
+
+/* Custom site styles */
+
+/* Reset left padding at the page edge, keep inner column gutters */
+.container-fluid.ps-0 { padding-left:0 !important; }

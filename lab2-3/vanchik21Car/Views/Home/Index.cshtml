@@ -1,0 +1,36 @@
+@model vanchik21Car.Models.ViewModels.VehicleListViewModel
+
+<div class="container-fluid ps-0 my-4">
+ <div class="row g-4">
+ <aside class="col-12 col-md-3">
+ @await Component.InvokeAsync("NavigationMenu")
+ </aside>
+ <section class="col-12 col-md-9">
+ <div class="d-flex justify-content-between align-items-center mb-3">
+ <h2 class="m-0">Vehicles</h2>
+ <span class="text-muted">Page @Model.PagingInfo.CurrentPage of @Model.PagingInfo.TotalPages (@Model.PagingInfo.TotalItems items)</span>
+ </div>
+
+ <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+ @foreach (var p in Model.Vehicles ?? Enumerable.Empty<vanchik21Car.Models.Vehicle>())
+ {
+ <partial name="VehicleSummary" model="p" />
+ }
+ </div>
+
+ <nav class="pager-1line mt-4" aria-label="Vehicle pages">
+ <ul class="pagination pagination-sm"
+ page-model="@Model.PagingInfo"
+ page-action="Index"
+ page-classes-enabled="true"
+ page-item-class="page-item"
+ page-item-class-selected="active"
+ page-item-class-disabled="disabled"
+ page-link-class="page-link"
+ page-url-category="@Model.CurrentCategory">
+ </ul>
+ </nav>
+ </section>
+ </div>
+</div>
+

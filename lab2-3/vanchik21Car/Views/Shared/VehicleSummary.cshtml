@@ -1,0 +1,15 @@
+@model vanchik21Car.Models.Vehicle
+
+<div class="col">
+ <div class="card h-100 shadow-sm border-0">
+ <div class="card-body">
+ <h5 class="card-title">@Model.Make @Model.Model</h5>
+ <ul class="list-unstyled small text-muted mb-2">
+ <li>Year: <strong class="text-dark">@Model.Year</strong></li>
+ <li>Category: <strong class="text-dark">@Model.Category</strong></li>
+ <li>Status: <span class="badge bg-@(Model.Status == vanchik21Car.Models.VehicleStatus.Available ? "success" : "secondary")">@Model.Status</span></li>
+ </ul>
+ <div class="fs-5 fw-semibold">@Model.DailyRate.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-US")) / day</div>
+ </div>
+ </div>
+</div>
