@@ -1,0 +1,11 @@
+@WebFromCli_HostAddress = http://localhost:5064
+
+GET {{WebFromCli_HostAddress}}/info/who
+Accept: application/json
+
+###
+
+GET {{WebFromCli_HostAddress}}/info/time
+Accept: application/json
+
+###

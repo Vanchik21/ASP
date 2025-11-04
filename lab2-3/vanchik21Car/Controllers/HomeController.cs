@@ -19,14 +19,12 @@ namespace vanchik21Car.Controllers
 
         public IActionResult Index(string? category, int page = 1)
         {
-            // Determine effective category using incoming value or session fallback
             string? effectiveCategory = category;
             if (effectiveCategory is null)
             {
                 effectiveCategory = HttpContext.Session.GetString(SessionCategoryKey);
             }
 
-            // Handle explicit 'All' click (empty string clears filter)
             if (category != null && string.IsNullOrWhiteSpace(category))
             {
                 HttpContext.Session.Remove(SessionCategoryKey);

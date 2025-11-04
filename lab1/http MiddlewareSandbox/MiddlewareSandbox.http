@@ -1,0 +1,4 @@
+GET http://localhost:5034/?custom=123
+X-API-KEY: vanchik21kGET http://localhost:5034/?custom=123
+X-API-KEY: vanchik21k
+Accept: text/plain

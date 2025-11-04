@@ -1,0 +1,9 @@
+@vanchik21Car_HostAddress = http://localhost:5000
+
+GET {{vanchik21Car_HostAddress}}/home/cars
+### Get all cars
+
+````````
+
+
+# Response

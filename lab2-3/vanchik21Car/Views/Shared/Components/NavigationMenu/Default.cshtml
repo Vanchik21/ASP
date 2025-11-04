@@ -1,17 +1,17 @@
 @model IEnumerable<string>
-@{
+    @{
  var selected = ViewBag.SelectedCategory as string;
-}
-<div class="list-group">
- <a class="list-group-item list-group-item-action @(string.IsNullOrEmpty(selected) ? "active" : null)"
- asp-controller="Home" asp-action="Index" asp-route-category="">
- All
- </a>
- @foreach (var c in Model)
+    }
+    <div class="list-group">
+        <a class="list-group-item list-group-item-action @(string.IsNullOrEmpty(selected) ? "active" : null)"
+           asp-controller="Home" asp-action="Index" asp-route-category="">
+            All
+        </a>
+        @foreach (var c in Model)
  {
- <a class="list-group-item list-group-item-action @(selected == c ? "active" : null)"
- asp-controller="Home" asp-action="Index" asp-route-category="@c">
- @c
- </a>
+        <a class="list-group-item list-group-item-action @(selected == c ? "active" : null)"
+           asp-controller="Home" asp-action="Index" asp-route-category="@c">
+            @c
+        </a>
  }
-</div>
+    </div>

@@ -1,0 +1,23 @@
+@model vanchik21Car.Models.MaintenanceRecord
+@{
+ ViewData["Title"] = "Delete Maintenance";
+}
+<div class="container my-4">
+    <h2 class="mb-3">Delete Maintenance</h2>
+    <div class="alert alert-warning">Are you sure you want to delete this maintenance record?</div>
+    <dl class="row">
+        <dt class="col-sm-3">Vehicle</dt>
+        <dd class="col-sm-9">@Model.Vehicle?.Make @Model.Vehicle?.Model (@Model.Vehicle?.LicensePlate)</dd>
+        <dt class="col-sm-3">Date</dt>
+        <dd class="col-sm-9">@Model.PerformedAt.ToLocalTime().ToString("yyyy-MM-dd HH:mm")</dd>
+        <dt class="col-sm-3">Description</dt>
+        <dd class="col-sm-9">@Model.Description</dd>
+        <dt class="col-sm-3">Cost</dt>
+        <dd class="col-sm-9">@Model.Cost.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-US"))</dd>
+    </dl>
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="MaintenanceRecordID" />
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-action="Index" asp-route-vehicleId="@Model.VehicleID" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

@@ -6,5 +6,6 @@ namespace vanchik21Car.Models
     {
         public VehicleDbContext(DbContextOptions<VehicleDbContext> options) : base(options) { }
         public DbSet<Vehicle> Vehicles => Set<Vehicle>();
+        public DbSet<MaintenanceRecord> MaintenanceRecords => Set<MaintenanceRecord>();
     }
 }
