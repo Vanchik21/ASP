@@ -18,13 +18,14 @@ namespace vanchik21Car.Models
         [ValidateNever]
         public Vehicle? Vehicle { get; set; }
 
-        [Required]
-        [MaxLength(200)]
+        [Required(ErrorMessage = "Please enter a description")]
+        [MaxLength(200, ErrorMessage = "Description is too long")]
         public string Description { get; set; } = string.Empty;
 
         public DateTime PerformedAt { get; set; } = DateTime.UtcNow;
 
         [Column(TypeName = "decimal(10,2)")]
+        [Range(0,1000000, ErrorMessage = "Please enter a valid cost")]
         public decimal Cost { get; set; }
 
         [MaxLength(100)]
