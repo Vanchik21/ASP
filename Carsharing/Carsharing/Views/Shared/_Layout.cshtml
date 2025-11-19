@@ -1,109 +1,107 @@
 @using Microsoft.AspNetCore.Identity
-@inject SignInManager<Carsharing.Models.ApplicationUser>
-    SignInManager
-    @inject UserManager<Carsharing.Models.ApplicationUser>
-        UserManager
+@inject SignInManager<Carsharing.Models.ApplicationUser> SignInManager
+@inject UserManager<Carsharing.Models.ApplicationUser> UserManager
 
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <title>Carsharing - Vehicle Rental</title>
-            <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
-            <link rel="stylesheet" href="~/css/site.css" />
-        </head>
-        <body class="d-flex flex-column min-vh-100">
-            <header class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div class="container-fluid">
-                    <a class="navbar-brand" asp-controller="Home" asp-action="Index">
-                        Carsharing
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-                            aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="mainNavbar">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Home" asp-action="Index">
-                                    Home
-                                </a>
-                            </li>
-                            @if (SignInManager.IsSignedIn(User))
-                    {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Vehicles" asp-action="Index">
-                                    Vehicles
-                                </a>
-                            </li>
-                        if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Carsharing - Vehicle Rental</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                Carsharing
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                    aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">
+                            Home
+                        </a>
+                    </li>
+                    @if (SignInManager.IsSignedIn(User))
+            {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Vehicles" asp-action="Index">
+                            Vehicles
+                        </a>
+                    </li>
+                if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Maintenance" asp-action="Index">
+                            Maintenance
+                        </a>
+                    </li>
+                }
+            }
+                </ul>
+
+                <ul class="navbar-nav ms-auto">
+                    @if (SignInManager.IsSignedIn(User))
+            {
+                var currentUser = await UserManager.GetUserAsync(User);
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="badge bg-primary">@currentUser?.FullName</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><span class="dropdown-item-text">@currentUser?.Email</span></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" asp-controller="Account" asp-action="Profile">My Profile</a></li>
+                            @if (User.IsInRole("Admin"))
                         {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Maintenance" asp-action="Index">
-                                    Maintenance
-                                </a>
-                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" asp-controller="Admin" asp-action="Index">Admin Panel</a></li>
                         }
-                    }
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <form asp-controller="Account" asp-action="Logout" method="post">
+                                    <button type="submit" class="dropdown-item">Logout</button>
+                                </form>
+                            </li>
                         </ul>
+                    </li>
+            }
+            else
+            {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Account" asp-action="Login">
+                            Login
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Account" asp-action="Register">
+                            Register
+                        </a>
+                    </li>
+            }
+                </ul>
+            </div>
+        </div>
+    </header>
 
-                        <ul class="navbar-nav ms-auto">
-                            @if (SignInManager.IsSignedIn(User))
-                    {
-                        var currentUser = await UserManager.GetUserAsync(User);
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                   data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span class="badge bg-primary">@currentUser?.FullName</span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                    <li><span class="dropdown-item-text">@currentUser?.Email</span></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" asp-controller="Account" asp-action="Profile">My Profile</a></li>
-                                    @if (User.IsInRole("Admin"))
-                                {
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" asp-controller="Admin" asp-action="Index">Admin Panel</a></li>
-                                }
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li>
-                                        <form asp-controller="Account" asp-action="Logout" method="post">
-                                            <button type="submit" class="dropdown-item">Logout</button>
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                    }
-                    else
-                    {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Account" asp-action="Login">
-                                    Login
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Account" asp-action="Register">
-                                    Register
-                                </a>
-                            </li>
-                    }
-                        </ul>
-                    </div>
-                </div>
-            </header>
+    <main class="container-fluid py-4 flex-fill">
+        @RenderBody()
+    </main>
 
-            <main class="container-fluid py-4 flex-fill">
-                @RenderBody()
-            </main>
+    <footer class="bg-light border-top py-3 mt-auto">
+        <div class="container text-center">
+            <p class="text-muted mb-0">&copy; @DateTime.Now.Year - Carsharing. All rights reserved.</p>
+        </div>
+    </footer>
 
-            <footer class="bg-light border-top py-3 mt-auto">
-                <div class="container text-center">
-                    <p class="text-muted mb-0">&copy; @DateTime.Now.Year - Carsharing. All rights reserved.</p>
-                </div>
-            </footer>
-
-            <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-            @await RenderSectionAsync("Scripts", required: false)
-        </body>
-    </html>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
