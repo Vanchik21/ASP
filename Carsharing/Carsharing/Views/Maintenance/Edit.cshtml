@@ -1,0 +1,35 @@
+@model Carsharing.Models.MaintenanceRecord
+@{
+ ViewData["Title"] = "Edit Maintenance";
+ var selectList = ViewData["VehicleID"] as Microsoft.AspNetCore.Mvc.Rendering.SelectList;
+}
+<div class="container my-4">
+    <h2 class="mb-3">Edit Maintenance</h2>
+    <form asp-action="Edit" method="post" class="row g-3">
+        <input type="hidden" asp-for="MaintenanceRecordID" />
+        <div class="col-md-6">
+            <label asp-for="VehicleID" class="form-label">Vehicle</label>
+            <select asp-for="VehicleID" class="form-select" asp-items="@selectList"></select>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="PerformedAt" class="form-label">Performed At (UTC)</label>
+            <input asp-for="PerformedAt" type="datetime-local" class="form-control" />
+        </div>
+        <div class="col-12">
+            <label asp-for="Description" class="form-label">Description</label>
+            <input asp-for="Description" class="form-control" />
+        </div>
+        <div class="col-md-6">
+            <label asp-for="Cost" class="form-label">Cost</label>
+            <input asp-for="Cost" class="form-control" />
+        </div>
+        <div class="col-md-6">
+            <label asp-for="PerformedBy" class="form-label">Performed By</label>
+            <input asp-for="PerformedBy" class="form-control" />
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a asp-action="Index" asp-route-vehicleId="@Model.VehicleID" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>

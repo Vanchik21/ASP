@@ -1,0 +1,45 @@
+@model Carsharing.Models.Vehicle
+
+<div class="col">
+    <div class="card vehicle-card h-100">
+        <div class="card-body d-flex flex-column">
+            <div class="mb-2">
+                <h5 class="card-title mb-1">@Model.Make @Model.Model</h5>
+                <p class="text-muted small mb-0">@Model.LicensePlate</p>
+            </div>
+
+            <ul class="list-unstyled vehicle-meta small mb-3">
+                <li class="d-flex justify-content-between">
+                    <span class="text-muted">Year:</span>
+                    <strong>@Model.Year</strong>
+                </li>
+                <li class="d-flex justify-content-between">
+                    <span class="text-muted">Category:</span>
+                    <strong>@Model.Category</strong>
+                </li>
+                <li class="d-flex justify-content-between">
+                    <span class="text-muted">Status:</span>
+                    <span class="badge bg-@(Model.Status == Carsharing.Models.VehicleStatus.Available ? "success" : Model.Status == Carsharing.Models.VehicleStatus.Rented ? "warning" : "secondary")">
+                        @Model.Status
+                    </span>
+                </li>
+            </ul>
+
+            <div class="mt-auto">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="vehicle-rate fs-5">
+                        @Model.DailyRate.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-US"))
+                    </span>
+                    <span class="text-muted small">per day</span>
+                </div>
+
+                <a asp-controller="Vehicles"
+                   asp-action="Details"
+                   asp-route-id="@Model.VehicleID"
+                   class="btn btn-outline-primary btn-sm w-100">
+                    View Details
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

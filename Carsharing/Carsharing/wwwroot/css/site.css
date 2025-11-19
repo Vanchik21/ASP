@@ -1,0 +1,111 @@
+.vehicle-card {
+ transition: transform .2s ease, box-shadow .2s ease;
+ border: 1px solid #dee2e6 !important;
+}
+.vehicle-card:hover {
+ transform: translateY(-3px);
+ box-shadow: 0 .5rem 1rem rgba(0,0,0,.1) !important;
+}
+.vehicle-card .card-title {
+ margin-bottom: .25rem;
+ font-size: 1.1rem;
+}
+.vehicle-meta li {
+ padding: .3rem 0;
+ border-bottom: 1px solid #f0f0f0;
+}
+.vehicle-meta li:last-child {
+ border-bottom: none;
+}
+.vehicle-rate {
+ font-weight: 600;
+ color: #198754 !important;
+}
+.pager-1line {
+ overflow-x: auto;
+ -webkit-overflow-scrolling: touch;
+}
+.pager-1line > ul.pagination {
+ display: inline-flex;
+ flex-wrap: nowrap;
+ white-space: nowrap;
+ gap: .25rem;
+ margin-bottom: 0;
+}
+.pager-1line .page-link {
+ border-radius: .25rem;
+}
+.navbar {
+ box-shadow: 0 2px 4px rgba(0,0,0,.08);
+}
+.navbar-brand {
+ font-weight: 600;
+ font-size: 1.3rem;
+}
+.badge {
+ padding: .35em .65em;
+ font-weight: 500;
+}
+.list-group-item {
+ border-left: 3px solid transparent;
+ transition: all .2s ease;
+}
+.list-group-item:hover {
+ background-color: #f8f9fa;
+ border-left-color: #0d6efd;
+}
+.list-group-item.active {
+ background-color: #e7f1ff !important;
+ color: #0d6efd;
+ font-weight: 500;
+ border-left-color: #0d6efd;
+}
+footer {
+ margin-top: auto;
+}
+.container-fluid.ps-0 {
+ padding-left: 0 !important;
+}
+.hero-section {
+ background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+ color: white;
+ padding: 2.5rem 0;
+ border-radius: .375rem;
+ margin-bottom: 2rem;
+}
+.hero-section h1 {
+ font-weight: 600;
+ margin-bottom: .75rem;
+}
+.hero-section p {
+ font-size: 1.1rem;
+ opacity: .9;
+}
+.table {
+ box-shadow: 0 0 10px rgba(0,0,0,.05);
+}
+.table thead {
+ background-color: #f8f9fa;
+}
+.btn {
+ border-radius: .25rem;
+ font-weight: 500;
+ transition: all .2s ease;
+}
+.btn:hover {
+ transform: translateY(-1px);
+ box-shadow: 0 3px 6px rgba(0,0,0,.1);
+}
+.form-control:focus,
+.form-select:focus {
+ border-color: #86b7fe;
+ box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
+}
+.card {
+ border: 1px solid #dee2e6;
+}
+.card-header {
+ background-color: #f8f9fa;
+ border-bottom: 1px solid #dee2e6;
+ font-weight: 500;
+}

@@ -1,0 +1,87 @@
+@model Carsharing.Models.ApplicationUser
+@{
+    ViewData["Title"] = "User Profile";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">User Profile</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <strong>Full Name:</strong>
+                        </div>
+                        <div class="col-md-9">
+                            @Model.FullName
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <strong>First Name:</strong>
+                        </div>
+                        <div class="col-md-9">
+                            @Model.FirstName
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <strong>Last Name:</strong>
+                        </div>
+                        <div class="col-md-9">
+                            @Model.LastName
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <strong>Email:</strong>
+                        </div>
+                        <div class="col-md-9">
+                            @Model.Email
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <strong>Username:</strong>
+                        </div>
+                        <div class="col-md-9">
+                            @Model.UserName
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <strong>Registered At:</strong>
+                        </div>
+                        <div class="col-md-9">
+                            @Model.RegisteredAt.ToString("dd MMMM yyyy HH:mm")
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <strong>Roles:</strong>
+                        </div>
+                        <div class="col-md-9">
+                            @foreach (var role in ViewBag.Roles.ToString().Split(','))
+ {
+                            <span class="badge bg-info me-1">@role.Trim()</span>
+}
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
