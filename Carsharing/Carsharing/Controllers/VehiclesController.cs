@@ -2,16 +2,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using System.Linq;
-using Carsharing.Models;
+using Carsharing.Data.Data;
+using Carsharing.Data.Models;
 
 namespace Carsharing.Controllers
 {
     [Authorize] 
     public class VehiclesController : Controller
     {
-        private readonly VehicleDbContext _context;
+        private readonly CarsharingDbContext _context;
 
-        public VehiclesController(VehicleDbContext context)
+        public VehiclesController(CarsharingDbContext context)
         {
             _context = context;
         }

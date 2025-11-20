@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using Carsharing.Models;
+using Carsharing.Data.Models;
 using Carsharing.Models.ViewModels;
 
 namespace Carsharing.Controllers
@@ -77,10 +77,10 @@ namespace Carsharing.Controllers
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(
-                    model.Email,
-                    model.Password,
-                    model.RememberMe,
-                    lockoutOnFailure: true);
+                model.Email,
+                model.Password,
+                model.RememberMe,
+                lockoutOnFailure: true);
 
                 if (result.Succeeded)
                 {

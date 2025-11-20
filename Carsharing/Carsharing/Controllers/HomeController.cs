@@ -36,13 +36,13 @@ namespace Carsharing.Controllers
             }
 
             var query = repository.Vehicles
-                .Where(v => string.IsNullOrEmpty(effectiveCategory) || v.Category == effectiveCategory)
-                .OrderBy(v => v.VehicleID);
+            .Where(v => string.IsNullOrEmpty(effectiveCategory) || v.Category == effectiveCategory)
+            .OrderBy(v => v.VehicleID);
 
             var items = query
-                .Skip((page - 1) * PageSize)
-                .Take(PageSize)
-                .ToList();
+            .Skip((page - 1) * PageSize)
+            .Take(PageSize)
+            .ToList();
 
             var model = new VehicleListViewModel
             {

@@ -1,12 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-using Carsharing.Models;
+using Carsharing.Data.Models;
+using Carsharing.Data.Data;
+using Carsharing.Data.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<VehicleDbContext>(opts =>
+builder.Services.AddDbContext<CarsharingDbContext>(opts =>
 {
     opts.UseSqlServer(builder.Configuration["ConnectionStrings:CarsharingConnection"]);
 });
@@ -17,16 +19,16 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     options.Password.RequireLowercase = true;
     options.Password.RequireUppercase = true;
     options.Password.RequireNonAlphanumeric = false;
-    options.Password.RequiredLength = 6;
+    options.Password.RequiredLength =6;
 
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-    options.Lockout.MaxFailedAccessAttempts = 5;
+    options.Lockout.MaxFailedAccessAttempts =5;
     options.Lockout.AllowedForNewUsers = true;
 
     options.User.RequireUniqueEmail = true;
     options.SignIn.RequireConfirmedEmail = false;
 })
-.AddEntityFrameworkStores<VehicleDbContext>()
+.AddEntityFrameworkStores<CarsharingDbContext>()
 .AddDefaultTokenProviders();
 
 builder.Services.ConfigureApplicationCookie(options =>
@@ -67,7 +69,7 @@ using (var scope = app.Services.CreateScope())
     await SeedRolesAndAdmin(services);
 }
 
-SeedData.EnsurePopulated(app);
+SeedData.EnsurePopulated(app.Services);
 
 app.Run();
 

@@ -2,16 +2,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using System.Linq;
-using Carsharing.Models;
+using Carsharing.Data.Data;
+using Carsharing.Data.Models;
 
 namespace Carsharing.Controllers
 {
     [Authorize]
     public class MaintenanceController : Controller
     {
-        private readonly VehicleDbContext _context;
+        private readonly CarsharingDbContext _context;
 
-        public MaintenanceController(VehicleDbContext context)
+        public MaintenanceController(CarsharingDbContext context)
         {
             _context = context;
         }
@@ -112,12 +113,12 @@ namespace Carsharing.Controllers
             if (!ModelState.IsValid)
             {
                 ViewData["VehicleID"] = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(
-                    _context.Vehicles
-               .OrderBy(v => v.Make)
-                        .ThenBy(v => v.Model)
-                      .Select(v => new { v.VehicleID, Title = v.Make + " " + v.Model })
-                      .ToList(),
-                   "VehicleID", "Title", model.VehicleID);
+                _context.Vehicles
+                .OrderBy(v => v.Make)
+                .ThenBy(v => v.Model)
+                .Select(v => new { v.VehicleID, Title = v.Make + " " + v.Model })
+                .ToList(),
+                "VehicleID", "Title", model.VehicleID);
                 return View(model);
             }
 
